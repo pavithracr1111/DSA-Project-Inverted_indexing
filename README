@@ -1,0 +1,12 @@
+Inverted Indexing Project
+
+Overview
+
+This project implements an inverted indexing system in C, which can be used to create a database of words from multiple files and allow efficient searching and retrieval of information. The system builds an inverted index where each word points to a list of files and the locations (frequencies) where it appears.
+
+Features
+
+1. Read and process multiple files: The system reads words from multiple files and processes them.
+2. Create an inverted index: Each word points to a list of files and their respective word counts.
+3. Efficient search: Allows for efficient searching of words across multiple files.
+4. Display and update database: Provides functionalities to display and update the database
