@@ -5,29 +5,27 @@ int main(int argc, char *argv[])
     system("clear");
     Wlist *head[27] = {NULL};
 
-    // validate CLA
+    // Validate CLA
     if (argc <= 1)
     {
-        printf("Enter the valid no. arguments\n");
+        printf("Enter the valid number of arguments\n");
         printf("./Slist.exe file1.txt file2.txt.......\n");
         return 0;
     }
 
-    // create the file linked list
-
-    // declare a head pointer
+    // Declare a head pointer for file linked list
     Flist *f_head = NULL;
 
-    // validate the files
+    // Validate the files and create file linked list
     file_validation_n_file_list(&f_head, argv);
 
     if (f_head == NULL)
     {
-        printf("No file are available in the file LL\n");
+        printf("No files are available in the file linked list\n");
         printf("Hence the process is terminated\n");
         return 0;
     }
-    
+
     int y = 1;
     while (y)
     {
@@ -41,25 +39,42 @@ int main(int argc, char *argv[])
         printf("Enter your choice: ");
 
         int choice;
-        scanf("%d", &choice);
+        if (scanf("%d", &choice) != 1)
+        {
+            printf("Invalid input. Please enter a number.\n");
+            // Clear the input buffer
+            while (getchar() != '\n');
+            continue;
+        }
+
+        // Clear the input buffer
+        while (getchar() != '\n');
 
         switch (choice)
         {
         case 1:
-
             create_database(f_head, head);
+            printf("\nSuccessfully database is created\n\n");
             break;
         case 2:
-            displayDatabase();
+            display_database(head);
+            printf("\n");
             break;
         case 3:
-            updateDatabase();
+            update_database(head, &f_head);
             break;
         case 4:
-            searchDatabase();
+            {
+                char word[WORD_SIZE];
+                printf("\nEnter the word to search: ");
+                fgets(word, WORD_SIZE, stdin);
+                // Remove newline character at the end if present
+                word[strcspn(word, "\n")] = '\0';
+                search_database(head[tolower(word[0]) % 97], word);
+            }
             break;
         case 5:
-            saveDatabase();
+            save_database(head);
             break;
         case 6:
             printf("Exiting...\n");
