@@ -95,6 +95,7 @@ int to_create_list_of_files(Flist **f_head, char *name)
 			}
 			temp = temp->link;
 		}
+		
 		if (strcmp(temp->file_name, name) == 0)
 		{
 			free(new);
