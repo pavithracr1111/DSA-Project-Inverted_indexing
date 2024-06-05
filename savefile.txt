@@ -1,7 +1,6 @@
 #[0] 
- word : [are] 	file count : [3]	filename :   f1.txt 	word count :  [1]
+ word : [are] 	file count : [2]	filename :   f1.txt 	word count :  [1]
 									filename :   f2.txt 	word count :  [1]
-									filename :   f3.txt 	word count :  [1]
 								
 
 #[0] 
@@ -34,15 +33,10 @@
 								
 
 #[24] 
- word : [you] 	file count : [2]	filename :   f1.txt 	word count :  [1]
-									filename :   f3.txt 	word count :  [1]
+ word : [you] 	file count : [1]	filename :   f1.txt 	word count :  [1]
 								
 
 #[26] 
  word : [/] 	file count : [1]	filename :   f2.txt 	word count :  [1]
-								
-
-#[26] 
- word : [+] 	file count : [1]	filename :   f3.txt 	word count :  [1]
 								
 

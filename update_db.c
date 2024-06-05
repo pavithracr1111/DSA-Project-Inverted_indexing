@@ -1,6 +1,6 @@
 #include "inverted_search.h"
 
-void update_database(Wlist *head[], Flist **f_head)
+int update_database(Wlist *head[], Flist **f_head)
 {
     // prompt the user for new file to update the database
 
@@ -16,11 +16,13 @@ void update_database(Wlist *head[], Flist **f_head)
     {
         printf("\nFile : %s is not available\n", file_name);
         printf("Hence we are not adding that file\n");
+        return 0;
     }
     else if (empty == FILE_EMPTY)
     {
         printf("\nFile : %s is not having any content \n", file_name);
         printf("Hence we are not adding that file\n");
+        return 0;
     }
     else
     {
@@ -30,14 +32,17 @@ void update_database(Wlist *head[], Flist **f_head)
         if (ret_val == SUCCESS)
         {
             printf("\nSuccessfull : Inserting the file : %s into file LL\n", file_name);
+            *f_head = (*f_head)->link;
         }
         else if (ret_val == REPEATATION)
         {
-            printf("This file name : %s is repeated. Hence we are not adding that file\n", file_name);
+            printf("\nThis file name : %s is repeated. Hence we are not adding that file\n\n", file_name);
+            return 0;
         }
         else
         {
             printf("Failure\n");
+            return 0;
         }
     }
 
@@ -45,13 +50,8 @@ void update_database(Wlist *head[], Flist **f_head)
     {
         if (!strcmp((*f_head)->file_name, file_name))
         {
-            printf("Adding file to Database\n");
-
             create_database(*f_head, head);
-
-            printf("Successfully added the file to Database\n\n");
         }
         *f_head = (*f_head)->link;
     }
 }
-

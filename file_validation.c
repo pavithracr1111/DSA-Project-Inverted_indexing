@@ -25,13 +25,14 @@ void file_validation_n_file_list(Flist **f_head, char *argv[])
 		{
 			// add files to file LL
 			int ret_val = to_create_list_of_files(f_head, argv[i]);
+
 			if (ret_val == SUCCESS)
 			{
 				printf("Successfull : Inserting the file : %s into file LL\n", argv[i]);
 			}
 			else if (ret_val == REPEATATION)
 			{
-				printf("This file name : %s is repeated. Hence we are not adding that file\n", argv[i]);
+				printf("\nThis file name : %s is repeated. Hence we are not adding that file\n\n", argv[i]);
 			}
 			else
 			{
@@ -72,6 +73,7 @@ int to_create_list_of_files(Flist **f_head, char *name)
 	{
 		return -1;
 	}
+
 	strcpy(new->file_name, name);
 	new->link = NULL;
 
@@ -83,12 +85,23 @@ int to_create_list_of_files(Flist **f_head, char *name)
 	else
 	{
 		Flist *temp = *f_head;
-		while (temp->link)
+		
+		while (temp->link != NULL)
 		{
+			if (strcmp(temp->file_name, name) == 0)
+			{
+				free(new);
+				return REPEATATION;
+			}
 			temp = temp->link;
 		}
+		if (strcmp(temp->file_name, name) == 0)
+		{
+			free(new);
+			return REPEATATION;
+		}
 		temp->link = new;
-
-		return 0;
 	}
+
+	return SUCCESS;
 }

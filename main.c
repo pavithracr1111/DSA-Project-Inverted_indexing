@@ -1,3 +1,9 @@
+/*
+Name : Pavithra C R
+Date : 04/06/2024
+Description : Inverted Indexing Project
+*/
+
 #include "inverted_search.h"
 
 int main(int argc, char *argv[])
@@ -39,16 +45,7 @@ int main(int argc, char *argv[])
         printf("Enter your choice: ");
 
         int choice;
-        if (scanf("%d", &choice) != 1)
-        {
-            printf("Invalid input. Please enter a number.\n");
-            // Clear the input buffer
-            while (getchar() != '\n');
-            continue;
-        }
-
-        // Clear the input buffer
-        while (getchar() != '\n');
+        scanf("%d",&choice);
 
         switch (choice)
         {
@@ -64,15 +61,13 @@ int main(int argc, char *argv[])
             update_database(head, &f_head);
             break;
         case 4:
-            {
-                char word[WORD_SIZE];
-                printf("\nEnter the word to search: ");
-                fgets(word, WORD_SIZE, stdin);
-                // Remove newline character at the end if present
-                word[strcspn(word, "\n")] = '\0';
-                search_database(head[tolower(word[0]) % 97], word);
-            }
-            break;
+        {
+            char word[WORD_SIZE];
+            printf("\nEnter the word to search: ");
+            scanf(" %[^\n]", word);
+            search_database(head[tolower(word[0]) % 97], word);
+        }
+        break;
         case 5:
             save_database(head);
             break;
